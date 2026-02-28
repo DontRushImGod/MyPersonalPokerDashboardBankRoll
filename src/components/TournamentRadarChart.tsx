@@ -68,8 +68,8 @@ export function TournamentRadarChart({ sessions }: TournamentRadarChartProps) {
             <PolarAngleAxis
               dataKey="month"
               tick={{ fill: '#1f2937', fontSize: 12, fontWeight: 600 }}
-              stroke="#1f2937"
-              strokeWidth={1.5}
+              stroke="white"
+              strokeWidth={3}
             />
             <PolarRadiusAxis
               angle={90}
