@@ -4,6 +4,7 @@ import { SessionForm } from './components/SessionForm';
 import { Statistics } from './components/Statistics';
 import { BankrollChart } from './components/BankrollChart';
 import { TournamentStats } from './components/TournamentStats';
+import { TournamentRadarChart } from './components/TournamentRadarChart';
 import { SiteDistribution } from './components/SiteDistribution';
 import { SessionHistory } from './components/SessionHistory';
 import { Moon, Sun } from 'lucide-react';
@@ -51,6 +52,8 @@ function App() {
           <Statistics sessions={sessions} bankrollGoal={10000} />
 
           <BankrollChart sessions={sessions} bankrollGoal={10000} />
+
+          <TournamentRadarChart sessions={sessions} />
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <TournamentStats sessions={sessions} />
