@@ -10,6 +10,17 @@
     <meta name="twitter:image" content="https://bolt.new/static/og_default.png">
 </head>
   <body>
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('darkMode');
+          var isDark = saved ? JSON.parse(saved) : true;
+          if (isDark) document.documentElement.classList.add('dark');
+        } catch (e) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
