@@ -14,9 +14,10 @@ import { TrendingUp } from 'lucide-react';
 
 interface BankrollChartProps {
   sessions: PokerSession[];
+  bankrollGoal?: number;
 }
 
-export function BankrollChart({ sessions }: BankrollChartProps) {
+export function BankrollChart({ sessions, bankrollGoal }: BankrollChartProps) {
   const [excludeSatellites, setExcludeSatellites] = useState(false);
   const [excludeFreeroll, setExcludeFreeroll] = useState(false);
 
@@ -113,7 +114,7 @@ export function BankrollChart({ sessions }: BankrollChartProps) {
         <div className="bg-gradient-to-b from-gray-50 to-white dark:from-gray-700 dark:to-gray-800 rounded-lg p-4 mb-4">
           <ResponsiveContainer width="100%" height={400}>
             <LineChart data={data} margin={{ top: 20, right: 20, left: -20, bottom: 40 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#d1d5db" dark="#374151" />
+              <CartesianGrid strokeDasharray="3 3" stroke="#d1d5db" />
               <XAxis
                 dataKey="sessionNumber"
                 stroke="#6b7280"
@@ -134,6 +135,14 @@ export function BankrollChart({ sessions }: BankrollChartProps) {
                 strokeDasharray="3 3"
                 opacity={0.5}
               />
+              {bankrollGoal !== undefined && bankrollGoal > 0 && (
+                <ReferenceLine
+                  y={bankrollGoal}
+                  stroke="#3b82f6"
+                  strokeDasharray="5 5"
+                  label={{ value: 'Goal', position: 'right', fill: '#3b82f6', fontSize: 12 }}
+                />
+              )}
               <Line
                 type="monotone"
                 dataKey="profit"
