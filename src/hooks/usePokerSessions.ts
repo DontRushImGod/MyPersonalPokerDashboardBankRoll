@@ -13,16 +13,21 @@ export function usePokerSessions(user: User | null) {
       return;
     }
 
-    const { data, error } = await supabase
-      .from('poker_sessions')
-      .select('*')
-      .order('session_date', { ascending: false });
+    try {
+      const { data, error } = await supabase
+        .from('poker_sessions')
+        .select('*')
+        .order('session_date', { ascending: false });
 
-    if (error) {
-      console.error('Error loading sessions:', error);
+      if (error) {
+        console.error('Error loading sessions:', error);
+        setSessions([]);
+      } else {
+        setSessions(data ?? []);
+      }
+    } catch (err) {
+      console.error('Failed to load sessions:', err);
       setSessions([]);
-    } else {
-      setSessions(data ?? []);
     }
     setLoading(false);
   }, [user]);

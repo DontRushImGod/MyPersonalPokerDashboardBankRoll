@@ -7,16 +7,37 @@ export function useAuth() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null);
+    let mounted = true;
+    let settled = false;
+
+    const finish = (u: User | null) => {
+      if (settled || !mounted) return;
+      settled = true;
+      setUser(u);
       setLoading(false);
-    });
+    };
+
+    supabase.auth.getSession()
+      .then(({ data: { session }, error }) => {
+        if (error) console.error('Session error:', error.message);
+        finish(session?.user ?? null);
+      })
+      .catch((err) => {
+        console.error('Failed to get session:', err);
+        finish(null);
+      });
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
+      finish(session?.user ?? null);
     });
 
-    return () => subscription.unsubscribe();
+    const timeout = setTimeout(() => finish(null), 5000);
+
+    return () => {
+      mounted = false;
+      clearTimeout(timeout);
+      subscription.unsubscribe();
+    };
   }, []);
 
   return { user, loading };
