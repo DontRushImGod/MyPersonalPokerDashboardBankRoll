@@ -1,8 +1,19 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// https://vitejs.dev/config/
+// Strip crossorigin attributes from script/link tags in the built HTML.
+// Netlify's CDN doesn't return Access-Control-Allow-Origin for same-origin
+// static assets, so <script crossorigin> silently fails to execute.
+function stripCrossorigin() {
+  return {
+    name: 'strip-crossorigin',
+    transformIndexHtml(html: string) {
+      return html.replace(/\s+crossorigin(?=["'\s>])/g, '');
+    },
+  };
+}
+
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), stripCrossorigin()],
   base: './',
 });
