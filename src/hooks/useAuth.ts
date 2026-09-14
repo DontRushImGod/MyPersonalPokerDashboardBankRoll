@@ -31,7 +31,7 @@ export function useAuth() {
       finish(session?.user ?? null);
     });
 
-    const timeout = setTimeout(() => finish(null), 5000);
+    const timeout = setTimeout(() => finish(null), 3000);
 
     return () => {
       mounted = false;

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from './hooks/useAuth';
 import { usePokerSessions } from './hooks/usePokerSessions';
 import { useDarkMode } from './hooks/useDarkMode';
@@ -18,8 +18,16 @@ function App() {
   const { sessions, loading: sessionsLoading, addSession, deleteSession } = usePokerSessions(user);
   const { isDark, toggleDarkMode } = useDarkMode();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [authTimeout, setAuthTimeout] = useState(false);
 
-  if (authLoading) {
+  useEffect(() => {
+    if (authLoading) {
+      const t = setTimeout(() => setAuthTimeout(true), 4000);
+      return () => clearTimeout(t);
+    }
+  }, [authLoading]);
+
+  if (authLoading && !authTimeout) {
     return (
       <div className="min-h-screen bg-gray-900 flex items-center justify-center">
         <div className="text-center">
@@ -28,6 +36,10 @@ function App() {
         </div>
       </div>
     );
+  }
+
+  if (authLoading && authTimeout) {
+    return <AuthScreen isDark={isDark} toggleDarkMode={toggleDarkMode} />;
   }
 
   if (!user) {
