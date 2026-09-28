@@ -12,6 +12,7 @@ import { SiteDistribution } from './components/SiteDistribution';
 import { SessionHistory } from './components/SessionHistory';
 import { supabase } from './lib/supabase';
 import { Moon, Sun, LogOut } from 'lucide-react';
+import { LoadingScreen } from './components/LoadingScreen';
 
 function App() {
   const { user, loading: authLoading } = useAuth();
@@ -28,14 +29,7 @@ function App() {
   }, [authLoading]);
 
   if (authLoading && !authTimeout) {
-    return (
-      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
-        <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-blue-600 border-t-transparent"></div>
-          <p className="mt-4 text-gray-400">Loading...</p>
-        </div>
-      </div>
-    );
+    return <LoadingScreen />;
   }
 
   if (authLoading && authTimeout) {
@@ -47,14 +41,7 @@ function App() {
   }
 
   if (sessionsLoading) {
-    return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
-        <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-blue-600 border-t-transparent"></div>
-          <p className="mt-4 text-gray-600 dark:text-gray-400">Loading your poker sessions...</p>
-        </div>
-      </div>
-    );
+    return <LoadingScreen message="Loading your poker sessions..." />;
   }
 
   const handleSignOut = async () => {
