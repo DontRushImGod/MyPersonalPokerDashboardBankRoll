@@ -3,3 +3,7 @@ For all designs I ask you to make, have them be beautiful, not cookie cutter. Ma
 By default, this template supports JSX syntax with Tailwind CSS classes, React hooks, and Lucide React for icons. Do not install other packages for UI themes, icons, etc unless absolutely necessary or I request them.
 
 Use icons from lucide-react for logos.
+
+Please act as a Senior Full-Stack Developer and Software Architect.
+
+ Provide a complete blueprint for this project, including:Tech Stack Recommendations: Suggest a modern, beginner-friendly frontend and backend stack (e.g., React with Next.js, Tailwind CSS, and a backend/auth service like Supabase or Firebase).Authentication Flow: Explain the best way to handle secure user registration, login, password resets, and session management.Database Schema: A simple database structure for the user profiles.Step-by-Step Roadmap: A clear list of phases to build this website from scratch."
