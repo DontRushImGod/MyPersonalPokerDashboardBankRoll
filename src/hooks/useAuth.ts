@@ -8,30 +8,28 @@ export function useAuth() {
 
   useEffect(() => {
     let mounted = true;
-    let settled = false;
-
-    const finish = (u: User | null) => {
-      if (settled || !mounted) return;
-      settled = true;
-      setUser(u);
-      setLoading(false);
-    };
-
-    supabase.auth.getSession()
-      .then(({ data: { session }, error }) => {
-        if (error) console.error('Session error:', error.message);
-        finish(session?.user ?? null);
-      })
-      .catch((err) => {
-        console.error('Failed to get session:', err);
-        finish(null);
-      });
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      finish(session?.user ?? null);
+      if (!mounted) return;
+      setUser(session?.user ?? null);
+      setLoading(false);
     });
 
-    const timeout = setTimeout(() => finish(null), 3000);
+    supabase.auth.getSession()
+      .then(({ data: { session } }) => {
+        if (!mounted) return;
+        setUser(session?.user ?? null);
+        setLoading(false);
+      })
+      .catch(() => {
+        if (!mounted) return;
+        setLoading(false);
+      });
+
+    const timeout = setTimeout(() => {
+      if (!mounted) return;
+      setLoading(false);
+    }, 3000);
 
     return () => {
       mounted = false;
