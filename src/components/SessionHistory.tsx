@@ -1,5 +1,5 @@
 import { PokerSession } from '../lib/supabase';
-import { Trash2, Calendar, Clock } from 'lucide-react';
+import { Trash2, Calendar, Clock, StickyNote, X } from 'lucide-react';
 import { useState } from 'react';
 
 interface SessionHistoryProps {
@@ -9,6 +9,7 @@ interface SessionHistoryProps {
 
 export function SessionHistory({ sessions, onDelete }: SessionHistoryProps) {
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [noteSession, setNoteSession] = useState<PokerSession | null>(null);
 
   const handleDelete = async (id: string) => {
     if (confirm('Are you sure you want to delete this session?')) {
@@ -83,6 +84,9 @@ export function SessionHistory({ sessions, onDelete }: SessionHistoryProps) {
                 Duration
               </th>
               <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                Notes
+              </th>
+              <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                 Actions
               </th>
             </tr>
@@ -136,6 +140,20 @@ export function SessionHistory({ sessions, onDelete }: SessionHistoryProps) {
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-center">
+                    {session.notes ? (
+                      <button
+                        onClick={() => setNoteSession(session)}
+                        className="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 hover:bg-amber-200 dark:hover:bg-amber-900/50 transition-colors"
+                        title="View notes"
+                      >
+                        <StickyNote className="w-3.5 h-3.5" />
+                        View
+                      </button>
+                    ) : (
+                      <span className="text-xs text-gray-400 dark:text-gray-600">—</span>
+                    )}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-center">
                     <button
                       onClick={() => handleDelete(session.id)}
                       disabled={deletingId === session.id}
@@ -151,6 +169,50 @@ export function SessionHistory({ sessions, onDelete }: SessionHistoryProps) {
           </tbody>
         </table>
       </div>
+
+      {noteSession && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
+          onClick={() => setNoteSession(null)}
+        >
+          <div
+            className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-lg w-full max-h-[80vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+              <div className="flex items-center gap-2">
+                <StickyNote className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white">Session Notes</h3>
+              </div>
+              <button
+                onClick={() => setNoteSession(null)}
+                className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="p-6">
+              <div className="flex flex-wrap gap-2 mb-4 text-xs">
+                <span className="px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-400">
+                  {noteSession.game_type}
+                </span>
+                <span className="px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
+                  {noteSession.stakes}
+                </span>
+                <span className="px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
+                  {noteSession.location}
+                </span>
+                <span className="px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
+                  {formatDate(noteSession.session_date)}
+                </span>
+              </div>
+              <p className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-wrap leading-relaxed">
+                {noteSession.notes}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
