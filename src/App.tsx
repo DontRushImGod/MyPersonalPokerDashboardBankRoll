@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useAuth } from './hooks/useAuth';
 import { usePokerSessions } from './hooks/usePokerSessions';
 import { useDarkMode } from './hooks/useDarkMode';
@@ -6,12 +6,12 @@ import { AuthScreen } from './components/AuthScreen';
 import { SessionForm } from './components/SessionForm';
 import { Statistics } from './components/Statistics';
 import { BankrollChart } from './components/BankrollChart';
-import { TournamentStats } from './components/TournamentStats';
 import { TournamentRadarChart } from './components/TournamentRadarChart';
+import { TournamentStats } from './components/TournamentStats';
 import { SiteDistribution } from './components/SiteDistribution';
 import { SessionHistory } from './components/SessionHistory';
 import { supabase } from './lib/supabase';
-import { Moon, Sun, LogOut } from 'lucide-react';
+import { Moon, Sun, LogOut, User } from 'lucide-react';
 import { LoadingScreen } from './components/LoadingScreen';
 
 function App() {
@@ -19,21 +19,22 @@ function App() {
   const { sessions, loading: sessionsLoading, addSession, deleteSession } = usePokerSessions(user);
   const { isDark, toggleDarkMode } = useDarkMode();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [authTimeout, setAuthTimeout] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (authLoading) {
-      const t = setTimeout(() => setAuthTimeout(true), 4000);
-      return () => clearTimeout(t);
+    const handleClickOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setMenuOpen(false);
+      }
+    };
+    if (menuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
     }
-  }, [authLoading]);
+  }, [menuOpen]);
 
-  if (authLoading && !authTimeout) {
+  if (authLoading) {
     return <LoadingScreen />;
-  }
-
-  if (authLoading && authTimeout) {
-    return <AuthScreen isDark={isDark} toggleDarkMode={toggleDarkMode} />;
   }
 
   if (!user) {
@@ -45,6 +46,7 @@ function App() {
   }
 
   const handleSignOut = async () => {
+    setMenuOpen(false);
     await supabase.auth.signOut();
   };
 
@@ -62,13 +64,13 @@ function App() {
         )}
       </button>
 
-      <div className="fixed top-6 right-20 z-40">
+      <div ref={menuRef} className="fixed top-6 right-20 z-40">
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110 border border-gray-200 dark:border-gray-700"
           title="Account"
         >
-          <LogOut className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+          <User className="w-5 h-5 text-gray-700 dark:text-gray-300" />
         </button>
         {menuOpen && (
           <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
@@ -79,8 +81,9 @@ function App() {
             </div>
             <button
               onClick={handleSignOut}
-              className="w-full px-4 py-3 text-left text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+              className="w-full px-4 py-3 text-left text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors flex items-center gap-2"
             >
+              <LogOut className="w-4 h-4" />
               Sign Out
             </button>
           </div>

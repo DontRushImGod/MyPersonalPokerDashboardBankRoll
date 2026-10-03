@@ -24,7 +24,7 @@ export function Statistics({ sessions, bankrollGoal = 10000 }: StatisticsProps) 
       bgColor: currentBankroll >= 0 ? 'bg-green-50 dark:bg-green-900/20' : 'bg-red-50 dark:bg-red-900/20',
     },
     {
-      label: 'Win Rate',
+      label: 'ROI',
       value: `${winRate.toFixed(2)}%`,
       icon: TrendingUp,
       color: 'text-blue-600 dark:text-blue-400',

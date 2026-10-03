@@ -20,7 +20,7 @@ export function TournamentRadarChart({ sessions }: TournamentRadarChartProps) {
 
     [...pkoSessions, ...npkoSessions].forEach(session => {
       const date = new Date(session.session_date);
-      const dateKey = date.toISOString().split('T')[0];
+      const dateKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
 
       if (!dailyData[dateKey]) {
         dailyData[dateKey] = { PKO: 0, nPKO: 0 };

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Plus } from 'lucide-react';
+import { Plus, Loader2 } from 'lucide-react';
 
 interface SessionFormProps {
   onSubmit: (session: SessionFormData) => Promise<boolean>;
@@ -19,8 +19,16 @@ export interface SessionFormData {
 const GAME_TYPES = ['Cash Game', 'PLO', 'PKO Tournament', 'nPKO Tournament', 'MTT', 'Sit & Go'];
 const SITES = ['GGPoker', 'PokerStars', 'CoinPoker', 'WPTGlobal', 'ClubGG', 'Other'];
 
+function getLocalDateTimeNow() {
+  const now = new Date();
+  const offset = now.getTimezoneOffset() * 60000;
+  return new Date(now.getTime() - offset).toISOString().slice(0, 16);
+}
+
 export function SessionForm({ onSubmit }: SessionFormProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [formError, setFormError] = useState('');
   const [formData, setFormData] = useState<SessionFormData>({
     buy_in: 0,
     cash_out: 0,
@@ -29,24 +37,34 @@ export function SessionForm({ onSubmit }: SessionFormProps) {
     duration: 0,
     location: 'GGPoker',
     notes: '',
-    session_date: new Date().toISOString().slice(0, 16),
+    session_date: getLocalDateTimeNow(),
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const success = await onSubmit(formData);
-    if (success) {
-      setFormData({
-        buy_in: 0,
-        cash_out: 0,
-        game_type: 'Cash Game',
-        stakes: '',
-        duration: 0,
-        location: 'GGPoker',
-        notes: '',
-        session_date: new Date().toISOString().slice(0, 16),
-      });
-      setIsOpen(false);
+    setFormError('');
+    setSubmitting(true);
+    try {
+      const success = await onSubmit(formData);
+      if (success) {
+        setFormData({
+          buy_in: 0,
+          cash_out: 0,
+          game_type: 'Cash Game',
+          stakes: '',
+          duration: 0,
+          location: 'GGPoker',
+          notes: '',
+          session_date: getLocalDateTimeNow(),
+        });
+        setIsOpen(false);
+      } else {
+        setFormError('Failed to save the session. Please try again.');
+      }
+    } catch {
+      setFormError('Failed to save the session. Please try again.');
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -193,17 +211,32 @@ export function SessionForm({ onSubmit }: SessionFormProps) {
                   />
                 </div>
 
+                {formError && (
+                  <div className="p-3 rounded-md bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
+                    <p className="text-sm text-red-600 dark:text-red-400">{formError}</p>
+                  </div>
+                )}
+
                 <div className="flex gap-3 pt-4">
                   <button
                     type="submit"
-                    className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md font-medium transition-colors"
+                    disabled={submitting}
+                    className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white py-2 px-4 rounded-md font-medium transition-colors flex items-center justify-center gap-2"
                   >
-                    Add Session
+                    {submitting ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        Saving...
+                      </>
+                    ) : (
+                      'Add Session'
+                    )}
                   </button>
                   <button
                     type="button"
-                    onClick={() => setIsOpen(false)}
-                    className="flex-1 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 py-2 px-4 rounded-md font-medium transition-colors"
+                    onClick={() => { setIsOpen(false); setFormError(''); }}
+                    disabled={submitting}
+                    className="flex-1 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 py-2 px-4 rounded-md font-medium transition-colors disabled:opacity-50"
                   >
                     Cancel
                   </button>

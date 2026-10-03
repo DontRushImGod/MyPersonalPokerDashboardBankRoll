@@ -60,9 +60,23 @@ export function BankrollChart({ sessions, bankrollGoal }: BankrollChartProps) {
   }
 
   const data = getChartData();
+
+  if (data.length === 0) {
+    return (
+      <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+        <p className="text-gray-500 dark:text-gray-400 text-center">
+          No sessions match the current filters
+        </p>
+      </div>
+    );
+  }
+
   const currentProfit = data.length > 0 ? data[data.length - 1].profit : 0;
   const maxProfit = Math.max(...data.map(d => d.profit), 0);
   const minProfit = Math.min(...data.map(d => d.profit), 0);
+  const yDomain: [number | string, number | string] = data.length === 1
+    ? [minProfit - 10, maxProfit + 10]
+    : [minProfit - 5, maxProfit + 5];
 
   const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
@@ -126,7 +140,7 @@ export function BankrollChart({ sessions, bankrollGoal }: BankrollChartProps) {
                 style={{ fontSize: '12px' }}
                 tick={{ fill: '#6b7280' }}
                 label={{ value: '$', angle: -90, position: 'insideLeft' }}
-                domain={[minProfit - 5, maxProfit + 5]}
+                domain={yDomain}
               />
               <Tooltip content={<CustomTooltip />} />
               <ReferenceLine
