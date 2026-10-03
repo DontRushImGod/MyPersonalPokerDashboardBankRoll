@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { Moon, Sun, Loader2, Spade } from 'lucide-react';
+import { Moon, Sun, Loader2, TrendingUp } from 'lucide-react';
 
 interface AuthScreenProps {
   isDark: boolean;
@@ -35,51 +35,50 @@ export function AuthScreen({ isDark, toggleDarkMode }: AuthScreenProps) {
   };
 
   return (
-    <div className="min-h-screen bg-ink-100 dark:bg-ink-950 flex items-center justify-center p-4 transition-colors duration-300">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-felt-600/10 blur-3xl" />
-        <div className="absolute bottom-1/4 -right-32 w-96 h-96 rounded-full bg-accent-500/10 blur-3xl" />
-      </div>
-
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center p-4 transition-colors duration-200">
       <button
         onClick={toggleDarkMode}
-        className="fixed top-6 right-6 p-2.5 rounded-lg bg-ink-50 dark:bg-ink-800 text-ink-600 dark:text-ink-300 hover:bg-ink-200 dark:hover:bg-ink-700 transition-colors border border-ink-200 dark:border-ink-700 z-40"
+        className="fixed top-6 right-6 p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110 z-40 border border-gray-200 dark:border-gray-700"
         title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
       >
-        {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+        {isDark ? (
+          <Sun className="w-6 h-6 text-yellow-500" />
+        ) : (
+          <Moon className="w-6 h-6 text-gray-700" />
+        )}
       </button>
 
-      <div className="w-full max-w-md relative z-10">
+      <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-felt-600 rounded-2xl mb-4 shadow-felt-lg">
-            <Spade className="w-8 h-8 text-white" />
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-2xl mb-4 shadow-lg">
+            <TrendingUp className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-3xl font-bold text-ink-900 dark:text-white mb-2">
-            Poker Bankroll
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+            Poker Bankroll Dashboard
           </h1>
-          <p className="text-ink-500 dark:text-ink-400 text-sm">
-            Track sessions, analyze performance, manage your bankroll
+          <p className="text-gray-600 dark:text-gray-400">
+            Track your sessions, analyze performance, and manage your bankroll
           </p>
         </div>
 
-        <div className="bg-white dark:bg-ink-900 rounded-2xl shadow-felt-lg border border-ink-200 dark:border-ink-800 p-8">
-          <div className="flex gap-2 mb-6 p-1 bg-ink-100 dark:bg-ink-800 rounded-xl">
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 p-8">
+          <div className="flex gap-2 mb-6 p-1 bg-gray-100 dark:bg-gray-700 rounded-lg">
             <button
               onClick={() => { setMode('signin'); setError(''); }}
-              className={`flex-1 py-2.5 px-4 rounded-lg font-medium text-sm transition-all ${
+              className={`flex-1 py-2 px-4 rounded-md font-medium text-sm transition-all ${
                 mode === 'signin'
-                  ? 'bg-white dark:bg-ink-700 text-ink-900 dark:text-white shadow-sm'
-                  : 'text-ink-500 dark:text-ink-400 hover:text-ink-700 dark:hover:text-ink-300'
+                  ? 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm'
+                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
               }`}
             >
               Sign In
             </button>
             <button
               onClick={() => { setMode('signup'); setError(''); }}
-              className={`flex-1 py-2.5 px-4 rounded-lg font-medium text-sm transition-all ${
+              className={`flex-1 py-2 px-4 rounded-md font-medium text-sm transition-all ${
                 mode === 'signup'
-                  ? 'bg-white dark:bg-ink-700 text-ink-900 dark:text-white shadow-sm'
-                  : 'text-ink-500 dark:text-ink-400 hover:text-ink-700 dark:hover:text-ink-300'
+                  ? 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm'
+                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
               }`}
             >
               Sign Up
@@ -88,7 +87,7 @@ export function AuthScreen({ isDark, toggleDarkMode }: AuthScreenProps) {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-ink-700 dark:text-ink-300 mb-1.5">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Email
               </label>
               <input
@@ -97,12 +96,12 @@ export function AuthScreen({ isDark, toggleDarkMode }: AuthScreenProps) {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
-                className="w-full px-3.5 py-2.5 border border-ink-300 dark:border-ink-700 rounded-lg bg-ink-50 dark:bg-ink-800 text-ink-900 dark:text-white focus:ring-2 focus:ring-felt-500 focus:border-transparent transition-all outline-none"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-ink-700 dark:text-ink-300 mb-1.5">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Password
               </label>
               <input
@@ -112,12 +111,12 @@ export function AuthScreen({ isDark, toggleDarkMode }: AuthScreenProps) {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="At least 6 characters"
-                className="w-full px-3.5 py-2.5 border border-ink-300 dark:border-ink-700 rounded-lg bg-ink-50 dark:bg-ink-800 text-ink-900 dark:text-white focus:ring-2 focus:ring-felt-500 focus:border-transparent transition-all outline-none"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
               />
             </div>
 
             {error && (
-              <div className="p-3 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
+              <div className="p-3 rounded-md bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
                 <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
               </div>
             )}
@@ -125,7 +124,7 @@ export function AuthScreen({ isDark, toggleDarkMode }: AuthScreenProps) {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-felt-600 hover:bg-felt-700 disabled:opacity-50 disabled:cursor-not-allowed text-white py-2.5 px-4 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
+              className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white py-2.5 px-4 rounded-md font-medium transition-colors flex items-center justify-center gap-2"
             >
               {loading ? (
                 <>
@@ -138,11 +137,11 @@ export function AuthScreen({ isDark, toggleDarkMode }: AuthScreenProps) {
             </button>
           </form>
 
-          <p className="text-center text-sm text-ink-500 dark:text-ink-400 mt-6">
+          <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-6">
             {mode === 'signin' ? "Don't have an account? " : 'Already have an account? '}
             <button
               onClick={() => { setMode(mode === 'signin' ? 'signup' : 'signin'); setError(''); }}
-              className="text-felt-600 dark:text-felt-400 font-medium hover:underline"
+              className="text-blue-600 dark:text-blue-400 font-medium hover:underline"
             >
               {mode === 'signin' ? 'Sign up' : 'Sign in'}
             </button>

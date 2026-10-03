@@ -41,8 +41,8 @@ export function SessionHistory({ sessions, onDelete }: SessionHistoryProps) {
 
   if (sessions.length === 0) {
     return (
-      <div className="bg-white dark:bg-ink-900 rounded-xl p-12 border border-ink-200 dark:border-ink-800 text-center">
-        <p className="text-ink-500 dark:text-ink-400 text-lg">
+      <div className="bg-white dark:bg-gray-800 rounded-lg p-12 border border-gray-200 dark:border-gray-700 text-center">
+        <p className="text-gray-500 dark:text-gray-400 text-lg">
           No sessions recorded yet. Click the + button to add your first session!
         </p>
       </div>
@@ -50,91 +50,91 @@ export function SessionHistory({ sessions, onDelete }: SessionHistoryProps) {
   }
 
   return (
-    <div className="bg-white dark:bg-ink-900 rounded-xl border border-ink-200 dark:border-ink-800 overflow-hidden">
-      <div className="px-6 py-4 border-b border-ink-200 dark:border-ink-800">
-        <h3 className="text-lg font-bold text-ink-900 dark:text-white">Session History</h3>
+    <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+      <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+        <h3 className="text-xl font-bold text-gray-900 dark:text-white">Session History</h3>
       </div>
 
-      <div className="overflow-x-auto scrollbar-thin">
+      <div className="overflow-x-auto">
         <table className="w-full">
-          <thead className="bg-ink-50 dark:bg-ink-800/50">
+          <thead className="bg-gray-50 dark:bg-gray-900">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-semibold text-ink-500 dark:text-ink-400 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                 Date & Time
               </th>
-              <th className="px-6 py-3 text-left text-xs font-semibold text-ink-500 dark:text-ink-400 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                 Game Type
               </th>
-              <th className="px-6 py-3 text-left text-xs font-semibold text-ink-500 dark:text-ink-400 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                 Stakes
               </th>
-              <th className="px-6 py-3 text-left text-xs font-semibold text-ink-500 dark:text-ink-400 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                 Site
               </th>
-              <th className="px-6 py-3 text-right text-xs font-semibold text-ink-500 dark:text-ink-400 uppercase tracking-wider">
+              <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                 Buy-in
               </th>
-              <th className="px-6 py-3 text-right text-xs font-semibold text-ink-500 dark:text-ink-400 uppercase tracking-wider">
+              <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                 Cash-out
               </th>
-              <th className="px-6 py-3 text-right text-xs font-semibold text-ink-500 dark:text-ink-400 uppercase tracking-wider">
+              <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                 Profit
               </th>
-              <th className="px-6 py-3 text-center text-xs font-semibold text-ink-500 dark:text-ink-400 uppercase tracking-wider">
+              <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                 Duration
               </th>
-              <th className="px-6 py-3 text-center text-xs font-semibold text-ink-500 dark:text-ink-400 uppercase tracking-wider">
+              <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                 Notes
               </th>
-              <th className="px-6 py-3 text-center text-xs font-semibold text-ink-500 dark:text-ink-400 uppercase tracking-wider">
+              <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                 Actions
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-ink-200 dark:divide-ink-800">
+          <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
             {sessions.map((session) => {
               const profit = parseFloat(session.profit.toString());
               return (
                 <tr
                   key={session.id}
-                  className="hover:bg-ink-50 dark:hover:bg-ink-800/30 transition-colors"
+                  className="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
                 >
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="flex items-center gap-2 text-sm text-ink-900 dark:text-white">
-                      <Calendar className="w-4 h-4 text-ink-400 flex-shrink-0" />
+                    <div className="flex items-center gap-2 text-sm text-gray-900 dark:text-white">
+                      <Calendar className="w-4 h-4 text-gray-400" />
                       {formatDate(session.session_date)}
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="px-2.5 py-1 text-xs font-medium rounded-lg bg-felt-100 dark:bg-felt-900/30 text-felt-700 dark:text-felt-400">
+                    <span className="px-2 py-1 text-xs font-medium rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-400">
                       {session.game_type}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-ink-900 dark:text-white font-mono">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                     {session.stakes}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-ink-900 dark:text-white">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                     {session.location}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm text-ink-600 dark:text-ink-300 font-mono">
+                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm text-gray-900 dark:text-white">
                     ${parseFloat(session.buy_in.toString()).toFixed(2)}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm text-ink-600 dark:text-ink-300 font-mono">
+                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm text-gray-900 dark:text-white">
                     ${parseFloat(session.cash_out.toString()).toFixed(2)}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right">
                     <span
-                      className={`font-bold font-mono ${
+                      className={`font-semibold ${
                         profit >= 0
-                          ? 'text-felt-600 dark:text-felt-400'
-                          : 'text-red-500 dark:text-red-400'
+                          ? 'text-green-600 dark:text-green-400'
+                          : 'text-red-600 dark:text-red-400'
                       }`}
                     >
                       {profit >= 0 ? '+' : ''}${profit.toFixed(2)}
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-center">
-                    <div className="flex items-center justify-center gap-1 text-sm text-ink-600 dark:text-ink-400">
+                    <div className="flex items-center justify-center gap-1 text-sm text-gray-600 dark:text-gray-400">
                       <Clock className="w-4 h-4" />
                       {formatDuration(session.duration)}
                     </div>
@@ -143,21 +143,21 @@ export function SessionHistory({ sessions, onDelete }: SessionHistoryProps) {
                     {session.notes ? (
                       <button
                         onClick={() => setNoteSession(session)}
-                        className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-lg bg-accent-100 dark:bg-accent-900/30 text-accent-700 dark:text-accent-400 hover:bg-accent-200 dark:hover:bg-accent-900/50 transition-colors"
+                        className="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 hover:bg-amber-200 dark:hover:bg-amber-900/50 transition-colors"
                         title="View notes"
                       >
                         <StickyNote className="w-3.5 h-3.5" />
                         View
                       </button>
                     ) : (
-                      <span className="text-xs text-ink-300 dark:text-ink-700">—</span>
+                      <span className="text-xs text-gray-400 dark:text-gray-600">—</span>
                     )}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-center">
                     <button
                       onClick={() => handleDelete(session.id)}
                       disabled={deletingId === session.id}
-                      className="text-ink-400 hover:text-red-500 dark:text-ink-500 dark:hover:text-red-400 transition-colors disabled:opacity-50"
+                      className="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300 transition-colors disabled:opacity-50"
                       title="Delete session"
                     >
                       <Trash2 className="w-4 h-4" />
@@ -172,41 +172,41 @@ export function SessionHistory({ sessions, onDelete }: SessionHistoryProps) {
 
       {noteSession && (
         <div
-          className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
           onClick={() => setNoteSession(null)}
         >
           <div
-            className="bg-white dark:bg-ink-900 rounded-xl shadow-felt-lg max-w-lg w-full max-h-[80vh] overflow-y-auto scrollbar-thin"
+            className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-lg w-full max-h-[80vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between p-6 border-b border-ink-200 dark:border-ink-800">
+            <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
               <div className="flex items-center gap-2">
-                <StickyNote className="w-5 h-5 text-accent-600 dark:text-accent-400" />
-                <h3 className="text-lg font-bold text-ink-900 dark:text-white">Session Notes</h3>
+                <StickyNote className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white">Session Notes</h3>
               </div>
               <button
                 onClick={() => setNoteSession(null)}
-                className="text-ink-400 hover:text-ink-600 dark:hover:text-ink-200 transition-colors"
+                className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
             <div className="p-6">
               <div className="flex flex-wrap gap-2 mb-4 text-xs">
-                <span className="px-2.5 py-1 rounded-lg bg-felt-100 dark:bg-felt-900/30 text-felt-700 dark:text-felt-400">
+                <span className="px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-400">
                   {noteSession.game_type}
                 </span>
-                <span className="px-2.5 py-1 rounded-lg bg-ink-100 dark:bg-ink-800 text-ink-700 dark:text-ink-300 font-mono">
+                <span className="px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
                   {noteSession.stakes}
                 </span>
-                <span className="px-2.5 py-1 rounded-lg bg-ink-100 dark:bg-ink-800 text-ink-700 dark:text-ink-300">
+                <span className="px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
                   {noteSession.location}
                 </span>
-                <span className="px-2.5 py-1 rounded-lg bg-ink-100 dark:bg-ink-800 text-ink-700 dark:text-ink-300">
+                <span className="px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
                   {formatDate(noteSession.session_date)}
                 </span>
               </div>
-              <p className="text-sm text-ink-700 dark:text-ink-300 whitespace-pre-wrap leading-relaxed">
+              <p className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-wrap leading-relaxed">
                 {noteSession.notes}
               </p>
             </div>

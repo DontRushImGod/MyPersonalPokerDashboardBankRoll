@@ -7,8 +7,8 @@ interface TournamentRadarChartProps {
 }
 
 const COLORS = {
-  PKO: '#d97706',
-  nPKO: '#2d8e75',
+  PKO: '#f59e0b',
+  nPKO: '#3b82f6',
 };
 
 export function TournamentRadarChart({ sessions }: TournamentRadarChartProps) {
@@ -20,7 +20,7 @@ export function TournamentRadarChart({ sessions }: TournamentRadarChartProps) {
 
     [...pkoSessions, ...npkoSessions].forEach(session => {
       const date = new Date(session.session_date);
-      const dateKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+      const dateKey = date.toISOString().split('T')[0];
 
       if (!dailyData[dateKey]) {
         dailyData[dateKey] = { PKO: 0, nPKO: 0 };
@@ -36,7 +36,7 @@ export function TournamentRadarChart({ sessions }: TournamentRadarChartProps) {
     return Object.entries(dailyData)
       .sort(([dateA], [dateB]) => dateA.localeCompare(dateB))
       .map(([date, counts]) => ({
-        date: new Date(date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+        date: new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
         fullDate: date,
         PKO: counts.PKO,
         nPKO: counts.nPKO,
@@ -59,12 +59,12 @@ export function TournamentRadarChart({ sessions }: TournamentRadarChartProps) {
   const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
       return (
-        <div className="bg-ink-900 dark:bg-ink-950 text-white p-3 rounded-lg shadow-felt-lg border border-ink-700">
+        <div className="bg-gray-900 dark:bg-gray-950 text-white p-3 rounded-lg shadow-lg border border-gray-700">
           <p className="text-sm font-semibold">{payload[0].name}</p>
           <p className="text-lg font-bold" style={{ color: payload[0].payload.color }}>
             {payload[0].value} sessions
           </p>
-          <p className="text-xs text-ink-400">
+          <p className="text-xs text-gray-400">
             {((payload[0].value / (pkoSessions.length + npkoSessions.length)) * 100).toFixed(1)}%
           </p>
         </div>
@@ -94,14 +94,14 @@ export function TournamentRadarChart({ sessions }: TournamentRadarChartProps) {
   };
 
   return (
-    <div className="bg-white dark:bg-ink-900 rounded-xl p-6 border border-ink-200 dark:border-ink-800">
+    <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
       <div className="flex items-center gap-2 mb-6">
-        <PieChartIcon className="w-5 h-5 text-accent-600 dark:text-accent-400" />
-        <h3 className="text-lg font-bold text-ink-900 dark:text-white">Tournament Distribution</h3>
+        <PieChartIcon className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+        <h3 className="text-xl font-bold text-gray-900 dark:text-white">Daily Tournament Distribution</h3>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="w-full h-72 flex items-center justify-center">
+        <div className="w-full h-80 flex items-center justify-center">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
@@ -110,7 +110,7 @@ export function TournamentRadarChart({ sessions }: TournamentRadarChartProps) {
                 cy="50%"
                 labelLine={false}
                 label={renderCustomLabel}
-                outerRadius={110}
+                outerRadius={120}
                 fill="#8884d8"
                 dataKey="value"
                 animationBegin={0}
@@ -132,31 +132,31 @@ export function TournamentRadarChart({ sessions }: TournamentRadarChartProps) {
         </div>
 
         <div className="space-y-4">
-          <div className="bg-gradient-to-br from-accent-50 to-orange-50 dark:from-accent-900/20 dark:to-orange-900/10 rounded-xl p-5 border border-accent-200 dark:border-accent-800">
+          <div className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-lg p-5 border border-amber-200 dark:border-amber-800">
             <div className="flex items-center justify-between mb-2">
-              <h4 className="text-sm font-semibold text-accent-800 dark:text-accent-300">PKO Tournaments</h4>
+              <h4 className="text-sm font-semibold text-amber-900 dark:text-amber-300">PKO Tournaments</h4>
               <div className="w-4 h-4 rounded-full" style={{ backgroundColor: COLORS.PKO }}></div>
             </div>
-            <p className="text-3xl font-bold text-accent-700 dark:text-accent-400">{pkoSessions.length}</p>
-            <p className="text-sm text-ink-500 dark:text-ink-400 mt-1">sessions played</p>
-            <div className="mt-3 pt-3 border-t border-accent-200 dark:border-accent-800">
-              <p className="text-xs text-ink-500 dark:text-ink-400">Total Profit</p>
-              <p className={`text-xl font-bold font-mono ${totalPKOProfit >= 0 ? 'text-felt-600 dark:text-felt-400' : 'text-red-500'}`}>
+            <p className="text-3xl font-bold text-amber-700 dark:text-amber-400">{pkoSessions.length}</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">sessions played</p>
+            <div className="mt-3 pt-3 border-t border-amber-200 dark:border-amber-800">
+              <p className="text-xs text-gray-600 dark:text-gray-400">Total Profit</p>
+              <p className={`text-xl font-bold ${totalPKOProfit >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
                 ${totalPKOProfit.toFixed(2)}
               </p>
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-felt-50 to-emerald-50 dark:from-felt-900/20 dark:to-emerald-900/10 rounded-xl p-5 border border-felt-200 dark:border-felt-800">
+          <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-lg p-5 border border-blue-200 dark:border-blue-800">
             <div className="flex items-center justify-between mb-2">
-              <h4 className="text-sm font-semibold text-felt-800 dark:text-felt-300">nPKO Tournaments</h4>
+              <h4 className="text-sm font-semibold text-blue-900 dark:text-blue-300">nPKO Tournaments</h4>
               <div className="w-4 h-4 rounded-full" style={{ backgroundColor: COLORS.nPKO }}></div>
             </div>
-            <p className="text-3xl font-bold text-felt-700 dark:text-felt-400">{npkoSessions.length}</p>
-            <p className="text-sm text-ink-500 dark:text-ink-400 mt-1">sessions played</p>
-            <div className="mt-3 pt-3 border-t border-felt-200 dark:border-felt-800">
-              <p className="text-xs text-ink-500 dark:text-ink-400">Total Profit</p>
-              <p className={`text-xl font-bold font-mono ${totalNPKOProfit >= 0 ? 'text-felt-600 dark:text-felt-400' : 'text-red-500'}`}>
+            <p className="text-3xl font-bold text-blue-700 dark:text-blue-400">{npkoSessions.length}</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">sessions played</p>
+            <div className="mt-3 pt-3 border-t border-blue-200 dark:border-blue-800">
+              <p className="text-xs text-gray-600 dark:text-gray-400">Total Profit</p>
+              <p className={`text-xl font-bold ${totalNPKOProfit >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
                 ${totalNPKOProfit.toFixed(2)}
               </p>
             </div>
@@ -165,26 +165,26 @@ export function TournamentRadarChart({ sessions }: TournamentRadarChartProps) {
       </div>
 
       {dailyData.length > 0 && (
-        <div className="mt-6 pt-6 border-t border-ink-200 dark:border-ink-800">
-          <h4 className="text-sm font-semibold text-ink-900 dark:text-white mb-4">Day-by-Day Breakdown</h4>
-          <div className="max-h-64 overflow-y-auto scrollbar-thin space-y-2">
+        <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+          <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-4">Day-by-Day Breakdown</h4>
+          <div className="max-h-64 overflow-y-auto space-y-2">
             {dailyData.map((day, index) => (
               <div
                 key={index}
-                className="flex items-center justify-between p-3 bg-ink-50 dark:bg-ink-800/50 rounded-lg hover:bg-ink-100 dark:hover:bg-ink-800 transition-colors"
+                className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
               >
-                <span className="text-sm font-medium text-ink-900 dark:text-white">{day.date}</span>
+                <span className="text-sm font-medium text-gray-900 dark:text-white">{day.date}</span>
                 <div className="flex items-center gap-4">
                   {day.PKO > 0 && (
                     <div className="flex items-center gap-2">
                       <div className="w-3 h-3 rounded-full" style={{ backgroundColor: COLORS.PKO }}></div>
-                      <span className="text-sm font-semibold text-accent-700 dark:text-accent-400">{day.PKO} PKO</span>
+                      <span className="text-sm font-semibold text-amber-700 dark:text-amber-400">{day.PKO} PKO</span>
                     </div>
                   )}
                   {day.nPKO > 0 && (
                     <div className="flex items-center gap-2">
                       <div className="w-3 h-3 rounded-full" style={{ backgroundColor: COLORS.nPKO }}></div>
-                      <span className="text-sm font-semibold text-felt-700 dark:text-felt-400">{day.nPKO} nPKO</span>
+                      <span className="text-sm font-semibold text-blue-700 dark:text-blue-400">{day.nPKO} nPKO</span>
                     </div>
                   )}
                 </div>
