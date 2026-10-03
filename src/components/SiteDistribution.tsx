@@ -8,10 +8,10 @@ interface SiteDistributionProps {
 const SITE_COLORS: Record<string, string> = {
   GGPoker: 'bg-orange-500',
   PokerStars: 'bg-red-500',
-  CoinPoker: 'bg-blue-500',
-  WPTGlobal: 'bg-green-500',
-  ClubGG: 'bg-purple-500',
-  Other: 'bg-gray-500',
+  CoinPoker: 'bg-sky-500',
+  WPTGlobal: 'bg-felt-500',
+  ClubGG: 'bg-amber-500',
+  Other: 'bg-ink-400',
 };
 
 export function SiteDistribution({ sessions }: SiteDistributionProps) {
@@ -38,10 +38,10 @@ export function SiteDistribution({ sessions }: SiteDistributionProps) {
   }
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+    <div className="bg-white dark:bg-ink-900 rounded-xl p-6 border border-ink-200 dark:border-ink-800">
       <div className="flex items-center gap-2 mb-6">
-        <Globe className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white">Distribution by Site</h3>
+        <Globe className="w-5 h-5 text-felt-600 dark:text-felt-400" />
+        <h3 className="text-lg font-bold text-ink-900 dark:text-white">Distribution by Site</h3>
       </div>
 
       <div className="space-y-4">
@@ -54,26 +54,26 @@ export function SiteDistribution({ sessions }: SiteDistributionProps) {
               <div className="flex items-center justify-between text-sm">
                 <div className="flex items-center gap-2">
                   <div className={`w-3 h-3 rounded-full ${color}`} />
-                  <span className="font-medium text-gray-900 dark:text-white">{site}</span>
+                  <span className="font-medium text-ink-900 dark:text-white">{site}</span>
                 </div>
-                <div className="flex items-center gap-4 text-gray-600 dark:text-gray-400">
+                <div className="flex items-center gap-4 text-ink-500 dark:text-ink-400">
                   <span>{stats.sessions} sessions</span>
-                  <span className="font-semibold">${stats.totalBuyIn.toFixed(2)}</span>
+                  <span className="font-semibold font-mono">${stats.totalBuyIn.toFixed(2)}</span>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <div className="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+                <div className="flex-1 bg-ink-200 dark:bg-ink-800 rounded-full h-2 overflow-hidden">
                   <div
                     className={`h-full ${color} transition-all duration-500`}
                     style={{ width: `${percentage}%` }}
                   />
                 </div>
-                <span className="text-xs font-medium text-gray-600 dark:text-gray-400 w-12 text-right">
+                <span className="text-xs font-medium text-ink-500 dark:text-ink-400 w-12 text-right">
                   {percentage.toFixed(1)}%
                 </span>
               </div>
               <div className="flex justify-end">
-                <span className={`text-sm font-semibold ${stats.profit >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
+                <span className={`text-sm font-semibold font-mono ${stats.profit >= 0 ? 'text-felt-600 dark:text-felt-400' : 'text-red-500'}`}>
                   {stats.profit >= 0 ? '+' : ''}${stats.profit.toFixed(2)} profit
                 </span>
               </div>
@@ -82,10 +82,10 @@ export function SiteDistribution({ sessions }: SiteDistributionProps) {
         })}
       </div>
 
-      <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
+      <div className="mt-6 pt-4 border-t border-ink-200 dark:border-ink-800">
         <div className="flex justify-between text-sm">
-          <span className="font-semibold text-gray-900 dark:text-white">Total Investment</span>
-          <span className="font-bold text-gray-900 dark:text-white">${totalBuyIn.toFixed(2)}</span>
+          <span className="font-semibold text-ink-900 dark:text-white">Total Investment</span>
+          <span className="font-bold text-ink-900 dark:text-white font-mono">${totalBuyIn.toFixed(2)}</span>
         </div>
       </div>
     </div>

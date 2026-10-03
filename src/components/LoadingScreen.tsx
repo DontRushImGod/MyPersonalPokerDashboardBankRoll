@@ -17,10 +17,10 @@ const messages = [
 
 const suits = ['♠', '♥', '♦', '♣'];
 const suitColors: Record<string, string> = {
-  '♠': 'text-white',
+  '♠': 'text-ink-900',
   '♥': 'text-red-500',
   '♦': 'text-red-500',
-  '♣': 'text-white',
+  '♣': 'text-ink-900',
 };
 
 export function LoadingScreen({ message }: { message?: string }) {
@@ -47,11 +47,9 @@ export function LoadingScreen({ message }: { message?: string }) {
   }, []);
 
   return (
-    <div className="min-h-screen flex items-center justify-center overflow-hidden relative" style={{ background: 'radial-gradient(ellipse at center, #0d4f2c 0%, #062814 100%)' }}>
-      {/* Felt texture overlay */}
-      <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(255,255,255,0.08) 0%, transparent 50%), radial-gradient(circle at 80% 30%, rgba(255,255,255,0.05) 0%, transparent 50%)' }} />
+    <div className="min-h-screen flex items-center justify-center overflow-hidden relative" style={{ background: 'radial-gradient(ellipse at center, #143b33 0%, #080d16 100%)' }}>
+      <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(45, 142, 117, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 30%, rgba(245, 158, 11, 0.08) 0%, transparent 50%)' }} />
 
-      {/* Floating cards */}
       {cards.map(card => (
         <div
           key={card.id}
@@ -64,7 +62,7 @@ export function LoadingScreen({ message }: { message?: string }) {
           }}
         >
           <div
-            className="w-14 h-20 rounded-lg bg-gradient-to-br from-white to-gray-100 shadow-2xl flex flex-col items-center justify-center"
+            className="w-14 h-20 rounded-lg bg-gradient-to-br from-white to-ink-100 shadow-2xl flex flex-col items-center justify-center"
             style={{ animation: `cardSpin 3s ease-in-out infinite`, animationDelay: `${card.delay}s` }}
           >
             <span className={`text-2xl font-bold ${suitColors[card.suit]}`}>{card.rank}</span>
@@ -73,10 +71,8 @@ export function LoadingScreen({ message }: { message?: string }) {
         </div>
       ))}
 
-      {/* Chip stack */}
       <div className="relative z-10 flex flex-col items-center">
         <div className="relative w-32 h-32 mb-8">
-          {/* Chips */}
           {[0, 1, 2, 3].map(i => (
             <div
               key={i}
@@ -94,9 +90,9 @@ export function LoadingScreen({ message }: { message?: string }) {
                 className="w-full h-full rounded-full border-4 flex items-center justify-center"
                 style={{
                   background: i % 2 === 0
-                    ? 'linear-gradient(135deg, #dc2626, #991b1b)'
-                    : 'linear-gradient(135deg, #1e293b, #0f172a)',
-                  borderColor: i % 2 === 0 ? '#fca5a5' : '#475569',
+                    ? 'linear-gradient(135deg, #2d8e75, #1f725c)'
+                    : 'linear-gradient(135deg, #334155, #1e293b)',
+                  borderColor: i % 2 === 0 ? '#84c9b4' : '#64748b',
                   boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
                 }}
               >
@@ -112,24 +108,22 @@ export function LoadingScreen({ message }: { message?: string }) {
           ))}
         </div>
 
-        {/* Rotating message */}
         <div className="h-8 overflow-hidden">
           <p
             key={msgIndex}
-            className="text-amber-400 font-semibold text-lg tracking-wide"
+            className="text-accent-400 font-semibold text-lg tracking-wide"
             style={{ animation: 'msgSlide 0.4s ease-out' }}
           >
             {message || messages[msgIndex]}
           </p>
         </div>
 
-        {/* Dots */}
         <div className="flex gap-2 mt-4">
           {[0, 1, 2].map(i => (
             <div
               key={i}
-              className="w-2 h-2 rounded-full bg-amber-400"
-              style={{ animation: 'dotPulse 1.4s ease-in-out infinite', animationDelay: `${i * 0.2}s` }}
+              className="w-2 h-2 rounded-full bg-accent-400"
+              style={{ animation: `dotPulse 1.4s ease-in-out infinite`, animationDelay: `${i * 0.2}s` }}
             />
           ))}
         </div>
@@ -138,8 +132,8 @@ export function LoadingScreen({ message }: { message?: string }) {
       <style>{`
         @keyframes floatUp {
           0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-          15% { opacity: 0.6; }
-          85% { opacity: 0.6; }
+          15% { opacity: 0.5; }
+          85% { opacity: 0.5; }
           100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
         }
         @keyframes cardSpin {
