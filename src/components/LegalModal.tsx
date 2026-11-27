@@ -24,39 +24,39 @@ interface SectionMeta {
 const SECTION_META: Record<LegalSection, SectionMeta> = {
   terms: {
     icon: Scale,
-    title: 'Termos e Condições',
-    subtitle: 'Termos de Utilização do Serviço',
-    lastUpdated: '27 de novembro de 2026',
+    title: 'Terms & Conditions',
+    subtitle: 'Terms of Use of the Service',
+    lastUpdated: '27 November 2026',
   },
   privacy: {
     icon: Shield,
-    title: 'Política de Privacidade',
-    subtitle: 'Tratamento de Dados Pessoais',
-    lastUpdated: '27 de novembro de 2026',
+    title: 'Privacy Policy',
+    subtitle: 'Personal Data Processing',
+    lastUpdated: '27 November 2026',
   },
   copyright: {
     icon: Copy,
-    title: 'Aviso de Direitos de Autor',
-    subtitle: 'Propriedade Intelectual',
-    lastUpdated: '27 de novembro de 2026',
+    title: 'Copyright Notice',
+    subtitle: 'Intellectual Property',
+    lastUpdated: '27 November 2026',
   },
   responsible: {
     icon: AlertTriangle,
-    title: 'Jogo Responsável',
-    subtitle: 'Compromisso e Recursos de Apoio',
-    lastUpdated: '27 de novembro de 2026',
+    title: 'Responsible Gaming',
+    subtitle: 'Commitment & Support Resources',
+    lastUpdated: '27 November 2026',
   },
   cookies: {
     icon: Cookie,
-    title: 'Política de Cookies',
-    subtitle: 'Utilização de Cookies',
-    lastUpdated: '27 de novembro de 2026',
+    title: 'Cookies Policy',
+    subtitle: 'Use of Cookies',
+    lastUpdated: '27 November 2026',
   },
   contact: {
     icon: Mail,
-    title: 'Contactos e Avisos Legais',
-    subtitle: 'Entidade Gestora e Comunicações',
-    lastUpdated: '27 de novembro de 2026',
+    title: 'Legal Notices & Contact',
+    subtitle: 'Operating Entity & Communications',
+    lastUpdated: '27 November 2026',
   },
 };
 
@@ -90,95 +90,92 @@ function TermsContent() {
   return (
     <div>
       <TermParagraph>
-        Bem-vindo ao Poker Bankroll Dashboard. Ao aceder ou utilizar esta
-        plataforma, concorda com os presentes Termos e Condições. Caso não
-        concorde com qualquer parte destes termos, deverá deixar de utilizar o
-        serviço imediatamente.
+        Welcome to Poker Bankroll Dashboard. By accessing or using this
+        platform, you agree to these Terms & Conditions. If you do not agree
+        with any part of these terms, you should stop using the service
+        immediately.
       </TermParagraph>
 
-      <TermHeading>1. Aceitação dos Termos</TermHeading>
+      <TermHeading>1. Acceptance of Terms</TermHeading>
       <TermParagraph>
-        A utilização do Poker Bankroll Dashboard implica a aceitação integral e
-        sem reservas dos presentes Termos e Condições, conforme previsto no
-        regime geral das obrigações contratuais e nos artigos 226.º e seguintes
-        do Código Civil português.
+        Use of the Poker Bankroll Dashboard implies full and unreserved
+        acceptance of these Terms & Conditions, in accordance with the general
+        regime of contractual obligations under Portuguese civil law (Articles
+        226 et seq. of the Portuguese Civil Code).
       </TermParagraph>
 
-      <TermHeading>2. Definição do Serviço</TermHeading>
+      <TermHeading>2. Definition of the Service</TermHeading>
       <TermParagraph>
-        O Poker Bankroll Dashboard é uma ferramenta de registo e análise
-        estatística destinada exclusivamente a fins de acompanhamento pessoal
-        de resultados de sessões de poker. A plataforma não organiza, promove,
-        nem facilita jogos de azar nem apostas financeiras, nem processa
-        transações monetárias entre utilizadores.
+        Poker Bankroll Dashboard is a recording and statistical analysis tool
+        intended exclusively for personal tracking of poker session results.
+        The platform does not organise, promote, or facilitate gambling or
+        financial wagering, nor does it process monetary transactions between
+        users.
       </TermParagraph>
 
-      <TermHeading>3. Elegibilidade</TermHeading>
+      <TermHeading>3. Eligibility</TermHeading>
       <TermList
         items={[
-          'O utilizador declara ter, no mínimo, 18 anos de idade (maioridade civil em Portugal, conforme o artigo.º 122.º do Código Civil).',
-          'A utilização por menores de idade é estritamente proibida.',
-          'O utilizador declara que toda a informação fornecida é verdadeira, completa e atualizada.',
+          'You represent that you are at least 18 years of age (age of legal majority in Portugal, under Article 122 of the Civil Code).',
+          'Use by minors is strictly prohibited.',
+          'You represent that all information you provide is true, complete, and up to date.',
         ]}
       />
 
-      <TermHeading>4. Conta de Utilizador</TermHeading>
+      <TermHeading>4. User Account</TermHeading>
       <TermList
         items={[
-          'O utilizador é responsável pela confidencialidade das suas credenciais de acesso.',
-          'Toda a atividade realizada a partir da sua conta é da sua inteira responsabilidade.',
-          'O utilizador compromete-se a comunicar de imediato qualquer utilização não autorizada da sua conta.',
-          'A entidade gestora reserva-se o direito de suspender ou encerrar contas que violem os presentes termos.',
+          'You are responsible for maintaining the confidentiality of your login credentials.',
+          'All activity carried out from your account is your sole responsibility.',
+          'You agree to immediately notify us of any unauthorised use of your account.',
+          'We reserve the right to suspend or close accounts that breach these terms.',
         ]}
       />
 
-      <TermHeading>5. Utilização Aceitável</TermHeading>
-      <TermParagraph>O utilizador compromete-se a não:</TermParagraph>
+      <TermHeading>5. Acceptable Use</TermHeading>
+      <TermParagraph>You agree not to:</TermParagraph>
       <TermList
         items={[
-          'Utilizar a plataforma para fins ilegais, nomeadamente atividades previstas e punidas pela Lei n.º 4/2015, de 12 de janeiro (crime de jogo ilegal em Portugal).',
-          'Aceder de forma indevida a dados de outros utilizadores ou tentar comprometer a segurança do sistema.',
-          'Introduzir conteúdos difamatórios, ofensivos ou que infrinjam direitos de terceiros.',
-          'Utilizar técnicas de recolha automatizada (scraping, bots) sem autorização expressa.',
+          'Use the platform for unlawful purposes, including activities criminalised under Portuguese Law No. 4/2015 of 12 January (illegal gambling offence in Portugal).',
+          'Improperly access other users\u2019 data or attempt to compromise system security.',
+          'Introduce defamatory, offensive content or content that infringes the rights of third parties.',
+          'Use automated collection techniques (scraping, bots) without express authorisation.',
         ]}
       />
 
-      <TermHeading>6. Propriedade Intelectual</TermHeading>
+      <TermHeading>6. Intellectual Property</TermHeading>
       <TermParagraph>
-        Todos os elementos da plataforma — design, código, gráficos, logótipos e
-        marcas — são protegidos por direitos de autor nos termos do Código do
-        Direito de Autor e dos Direitos Conexos (aprovado pelo Decreto-Lei
-        n.º 122/2017, de 9 de outubro) e pela legislação comunitária aplicável.
-        É proibida a reprodução, total ou parcial, sem autorização prévia e por
-        escrito.
+        All elements of the platform — design, code, graphics, logos, and
+        trademarks — are protected by copyright under the Portuguese Code of
+        Copyright and Related Rights (approved by Decree-Law No. 122/2017 of
+        9 October) and applicable EU legislation. Reproduction, in whole or in
+        part, is prohibited without prior written authorisation.
       </TermParagraph>
 
-      <TermHeading>7. Limitação de Responsabilidade</TermHeading>
+      <TermHeading>7. Limitation of Liability</TermHeading>
       <TermParagraph>
-        A plataforma é fornecida "tal como está", sem garantias de qualquer
-        espécie, expressas ou implícitas. A entidade gestora não assume
-        responsabilidade por: (a) interrupções do serviço; (b) perda de dados
-        ou de lucros; (c) decisões de jogo tomadas com base na informação
-        apresentada; (d) imprecisões nos cálculos estatísticos apresentados.
+        The platform is provided "as is", without warranties of any kind,
+        express or implied. We assume no responsibility for: (a) service
+        interruptions; (b) loss of data or profits; (c) gambling decisions
+        made on the basis of the information presented; (d) inaccuracies in the
+        statistical calculations shown.
       </TermParagraph>
 
-      <TermHeading>8. Alterações aos Termos</TermHeading>
+      <TermHeading>8. Changes to the Terms</TermHeading>
       <TermParagraph>
-        A entidade gestora reserva-se o direito de atualizar os presentes
-        Termos a qualquer momento. As alterações produzem efeitos a partir da
-        sua publicação nesta página. A utilização continuada do serviço após
-        a publicação equivale à aceitação dos termos alterados.
+        We reserve the right to update these Terms at any time. Changes take
+        effect upon publication on this page. Continued use of the service
+        after publication constitutes acceptance of the amended terms.
       </TermParagraph>
 
-      <TermHeading>9. Lei Aplicável e Resolução de Litígios</TermHeading>
+      <TermHeading>9. Governing Law and Dispute Resolution</TermHeading>
       <TermParagraph>
-        Os presentes Termos regem-se pelo direito português. Qualquer litígio
-        será dirimido pelos Tribunais da Comarca de Lisboa, sem prejuízo das
-        normas imperativas aplicáveis em matéria de competência judiciária e
-        de resolução alternativa de litígios de consumo, nos termos da Lei
-        n.º 144/2015, de 8 de setembro. Para reclamações de consumo, poderá
-        recorrer ao Centro de Arbitragem de Conflitos de Consumo de Lisboa
-        (CNIACC — www.cniacc.pt).
+        These Terms are governed by Portuguese law. Any dispute shall be
+        resolved by the courts of the judicial district of Lisbon, without
+        prejudice to mandatory rules on jurisdiction and alternative consumer
+        dispute resolution under Portuguese Law No. 144/2015 of 8 September.
+        For consumer complaints, you may resort to the Lisbon Consumer Dispute
+        Arbitration Centre (CNIACC — www.cniacc.pt).
       </TermParagraph>
     </div>
   );
@@ -188,81 +185,80 @@ function PrivacyContent() {
   return (
     <div>
       <TermParagraph>
-        A presente Política de Privacidade descreve a forma como o Poker
-        Bankroll Dashboard recolhe, trata e protege os dados pessoais dos seus
-        utilizadores, em estrito cumprimento do Regulamento Geral de Proteção
-        de Dados (RGPD — Regulamento (UE) 2016/679) e da Lei n.º 58/2019, de
-        8 de agosto, que assegura a sua execução em Portugal.
+        This Privacy Policy describes how Poker Bankroll Dashboard collects,
+        processes, and protects its users\u2019 personal data, in strict
+        compliance with the General Data Protection Regulation (GDPR —
+        Regulation (EU) 2016/679) and Portuguese Law No. 58/2019 of 8 August,
+        which ensures its implementation in Portugal.
       </TermParagraph>
 
-      <TermHeading>1. Responsável pelo Tratamento</TermHeading>
+      <TermHeading>1. Data Controller</TermHeading>
       <TermParagraph>
-        O responsável pelo tratamento dos dados é a entidade gestora do Poker
-        Bankroll Dashboard, cujos contactos constam da secção "Contactos e
-        Avisos Legais".
+        The data controller is the operating entity of Poker Bankroll
+        Dashboard, whose contact details are set out in the "Legal Notices &
+        Contact" section.
       </TermParagraph>
 
-      <TermHeading>2. Dados Recolhidos</TermHeading>
+      <TermHeading>2. Data Collected</TermHeading>
       <TermList
         items={[
-          'Dados de identificação: endereço de email (utilizado para autenticação).',
-          'Dados de utilização: sessões de poker registadas, valores, datas e plataformas indicadas pelo utilizador.',
-          'Dados técnicos: endereço IP e metadados de acesso, com caráter temporário e para fins de segurança.',
+          'Identification data: email address (used for authentication).',
+          'Usage data: poker sessions logged, amounts, dates, and platforms indicated by the user.',
+          'Technical data: IP address and access metadata, temporary in nature and for security purposes.',
         ]}
       />
 
-      <TermHeading>3. Finalidades e Bases Legais</TermHeading>
+      <TermHeading>3. Purposes and Legal Bases</TermHeading>
       <TermList
         items={[
-          'Prestação do serviço (art.º 6.º, n.º 1, alínea b) do RGPD) — execução de contrato.',
-          'Cumprimento de obrigações legais (art.º 6.º, n.º 1, alínea c) do RGPD).',
-          'Melhoria e segurança da plataforma (art.º 6.º, n.º 1, alínea f) do RGPD — interesse legítimo).',
+          'Provision of the service (Article 6(1)(b) GDPR) — performance of a contract.',
+          'Compliance with legal obligations (Article 6(1)(c) GDPR).',
+          'Improvement and security of the platform (Article 6(1)(f) GDPR — legitimate interest).',
         ]}
       />
 
-      <TermHeading>4. Períodos de Conservação</TermHeading>
+      <TermHeading>4. Retention Periods</TermHeading>
       <TermParagraph>
-        Os dados são conservados durante o período estritamente necessário às
-        finalidades descritas. Os dados de sessões de poker são mantidos
-        enquanto a conta estiver ativa e eliminados no prazo máximo de 30 dias
-        após o pedido de encerramento da conta, salvo obrigitação legal em
-        contrário.
+        Data is retained for the period strictly necessary for the purposes
+        described. Poker session data is kept while the account is active and
+        deleted within a maximum of 30 days after an account closure request,
+        unless a legal obligation requires otherwise.
       </TermParagraph>
 
-      <TermHeading>5. Direitos do Titular dos Dados</TermHeading>
-      <TermParagraph>Nos termos do RGPD, o utilizador dispõe de:</TermParagraph>
+      <TermHeading>5. Data Subject Rights</TermHeading>
+      <TermParagraph>Under the GDPR, you are entitled to:</TermParagraph>
       <TermList
         items={[
-          'Direito de acesso aos dados (art.º 15.º).',
-          'Direito de retificação de dados inexatos (art.º 16.º).',
-          'Direito ao apagamento ("direito a ser esquecido", art.º 17.º).',
-          'Direito à limitação do tratamento (art.º 18.º).',
-          'Direito à portabilidade dos dados (art.º 20.º).',
-          'Direito de oposição ao tratamento (art.º 21.º).',
-          'Direito de não ser sujeito a decisões automatizadas (art.º 22.º).',
+          'Right of access to your data (Article 15).',
+          'Right to rectification of inaccurate data (Article 16).',
+          'Right to erasure ("right to be forgotten", Article 17).',
+          'Right to restriction of processing (Article 18).',
+          'Right to data portability (Article 20).',
+          'Right to object to processing (Article 21).',
+          'Right not to be subject to automated decisions (Article 22).',
         ]}
       />
       <TermParagraph>
-        Para exercer estes direitos, o utilizador deverá enviar um pedido por
-        escrito através dos contactos indicados na secção respetiva. A entidade
-        gestora responderá no prazo máximo de 30 dias.
+        To exercise these rights, please submit a written request using the
+        contact details in the relevant section. We will respond within a
+        maximum of 30 days.
       </TermParagraph>
 
-      <TermHeading>6. Autoridade de Controlo</TermHeading>
+      <TermHeading>6. Supervisory Authority</TermHeading>
       <TermParagraph>
-        Sem prejuízo de qualquer outro recurso administrativo ou judicial, o
-        utilizador tem o direito de apresentar reclamação junto da Comissão
-        Nacional de Proteção de Dados (CNPD), entidade competente em Portugal,
-        com sede na Av. Brasília, n.º 14, 1350-012 Lisboa, ou através do site
-        www.cnpd.pt.
+        Without prejudice to any other administrative or judicial remedy, you
+        have the right to lodge a complaint with the Portuguese Data Protection
+        Authority (Comissão Nacional de Proteção de Dados — CNPD), the
+        competent authority in Portugal, located at Av. Brasília, no. 14,
+        1350-012 Lisbon, or via www.cnpd.pt.
       </TermParagraph>
 
-      <TermHeading>7. Subcontratantes (Processadores)</TermHeading>
+      <TermHeading>7. Processors (Subcontractors)</TermHeading>
       <TermParagraph>
-        Para a prestação do serviço, são utilizados subcontratantes que atuam
-        como responsáveis pelo tratamento (ex.: prestadores de infraestrutura
-        cloud e de autenticação), estando vinculados contratualmente a garantias
-        de confidencialidade e segurança equivalentes às exigidas pelo RGPD.
+        To provide the service, we rely on processors (e.g. cloud
+        infrastructure and authentication providers) who are contractually
+        bound to confidentiality and security guarantees equivalent to those
+        required by the GDPR.
       </TermParagraph>
     </div>
   );
@@ -272,58 +268,57 @@ function CopyrightContent() {
   return (
     <div>
       <TermParagraph>
-        Todos os elementos integrantes da plataforma Poker Bankroll Dashboard —
-        incluindo, de forma não exaustiva, o código fonte, o design gráfico, as
-        interfaces, os logótipos, as marcas, os textos e a seleção e disposição
-        dos conteúdos — são protegidos por direitos de autor e direitos
-        conexos, nos termos do Código do Direito de Autor e dos Direitos
-        Conexos (Decreto-Lei n.º 122/2017, de 9 de outubro) e das diretivas
-        comunitárias relevantes.
+        All elements comprising the Poker Bankroll Dashboard platform —
+        including, without limitation, the source code, graphic design,
+        interfaces, logos, trademarks, texts, and the selection and
+        arrangement of content — are protected by copyright and related rights
+        under the Portuguese Code of Copyright and Related Rights (Decree-Law
+        No. 122/2017 of 9 October) and relevant EU directives.
       </TermParagraph>
 
-      <TermHeading>1. Titularidade</TermHeading>
+      <TermHeading>1. Ownership</TermHeading>
       <TermParagraph>
-        A titularidade dos direitos de autor sobre a plataforma pertence à
-        entidade gestora do Poker Bankroll Dashboard. Aos utilizadores é
-        concedido um direito de utilização pessoal, não exclusivo, intransmissível
-        e revogável, limitado ao acesso e utilização da plataforma em
-        conformidade com os Termos e Condições.
+        Ownership of the copyright in the platform belongs to the operating
+        entity of Poker Bankroll Dashboard. Users are granted a personal,
+        non-exclusive, non-transferable, and revocable right of use, limited
+        to accessing and using the platform in accordance with the Terms &
+        Conditions.
       </TermParagraph>
 
-      <TermHeading>2. Utilizações Permitidas</TermHeading>
+      <TermHeading>2. Permitted Uses</TermHeading>
       <TermList
         items={[
-          'Utilização da plataforma para fins pessoais e não comerciais.',
-          'Reprodução temporária dos conteúdos no dispositivo do utilizador, estritamente necessária ao funcionamento técnico (art.º 75.º do Código do Direito de Autor).',
+          'Use of the platform for personal, non-commercial purposes.',
+          'Temporary reproduction of content on the user\u2019s device, strictly necessary for technical operation (Article 75 of the Code of Copyright and Related Rights).',
         ]}
       />
 
-      <TermHeading>3. Utilizações Proibidas</TermHeading>
+      <TermHeading>3. Prohibited Uses</TermHeading>
       <TermList
         items={[
-          'Reprodução, distribuição, comunicação pública ou transformação, total ou parcial, sem autorização prévia e por escrito (art.º 64.º e 68.º do Código do Direito de Autor).',
-          'Extração e/ou reutilização da base de dados, nos termos do art.º 108.º e seguintes do mesmo diploma.',
-          'Remoção ou alteração de menções relativas aos direitos de autor ou de marca.',
+          'Reproduction, distribution, public communication, or transformation, in whole or in part, without prior written authorisation (Articles 64 and 68 of the Code of Copyright and Related Rights).',
+          'Extraction and/or reutilisation of the database, under Article 108 et seq. of the same Code.',
+          'Removal or alteration of copyright or trademark notices.',
         ]}
       />
 
-      <TermHeading>4. Marcas e Elementos de Terceiros</TermHeading>
+      <TermHeading>4. Third-Party Trademarks and Elements</TermHeading>
       <TermParagraph>
-        Quaisquer marcas, logótipos ou designações de terceiros eventualmente
-        referidos na plataforma (ex.: nomes de salas de poker) pertencem aos
-        respetivos titulares e são utilizados apenas para fins identificativos,
-        não implicando qualquer afiliação, patrocínio ou endosso. A sua
-        utilização por terceiros está sujeita à autorização dos respetivos
-        titulares.
+        Any trademarks, logos, or designations of third parties that may be
+        referred to on the platform (e.g. poker room names) belong to their
+        respective holders and are used solely for identification purposes,
+        implying no affiliation, sponsorship, or endorsement. Their use by
+        third parties is subject to the authorisation of the respective
+        holders.
       </TermParagraph>
 
-      <TermHeading>5. Sanções</TermHeading>
+      <TermHeading>5. Penalties</TermHeading>
       <TermParagraph>
-        A violação dos direitos de autor pode determinar a aplicação de sanções
-        cíveis (indemnização — art.º 323.º e seguintes do Código do Direito de
-        Autor) e criminais (previstas no art.º 324.º do mesmo diploma), sem
-        prejuízo das medidas cautelares e de Fiscalização adotadas pela
-        Inspeção-Geral das Atividades Culturais (IGAC).
+        Infringement of copyright may result in civil sanctions (compensation
+        — Article 323 et seq. of the Code of Copyright and Related Rights) and
+        criminal sanctions (provided for in Article 324 of the same Code),
+        without prejudice to the precautionary and supervisory measures taken
+        by the General Inspectorate for Cultural Activities (IGAC).
       </TermParagraph>
     </div>
   );
@@ -336,64 +331,63 @@ function ResponsibleContent() {
         <div className="flex items-start gap-3">
           <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
           <p className="text-sm text-amber-800 dark:text-amber-200 leading-relaxed">
-            O poker envolve riscos financeiros. Jogue sempre de forma
-            responsável. Se o jogo deixar de ser uma forma de entretenimento e
-            se tornar uma necessidade, procure ajuda especializada.
+            Poker involves financial risk. Always play responsibly. If gambling
+            stops being entertainment and becomes a need, seek professional
+            help.
           </p>
         </div>
       </div>
 
-      <TermHeading>1. Compromisso da Plataforma</TermHeading>
+      <TermHeading>1. Platform Commitment</TermHeading>
       <TermParagraph>
-        O Poker Bankroll Dashboard é uma ferramenta de acompanhamento
-        estatístico. Não promove, nem incentiva a prática de jogos de azar,
-        nem facilita a participação em jogos de poker com dinheiro real.
-        A informação apresentada destina-se exclusivamente ao auto-registo
-        e à análise de desempenho pelo próprio utilizador.
+        Poker Bankroll Dashboard is a statistical tracking tool. It does not
+        promote or encourage the practice of gambling, nor does it facilitate
+        participation in real-money poker games. The information presented is
+        intended exclusively for self-recording and performance analysis by the
+        user.
       </TermParagraph>
 
-      <TermHeading>2. Quadro Legal em Portugal</TermHeading>
+      <TermHeading>2. Legal Framework in Portugal</TermHeading>
       <TermParagraph>
-        A exploração e participação em jogos de azar em Portugal são reguladas
-        pela Lei n.º 4/2015, de 12 de janeiro, e supervisionadas pelo Serviço
-        de Regulação e Inspeção de Jogos do Turismo de Portugal (SRIJ —
-        www.srij.turismodeportugal.pt). Apenas as entidades licenciadas pelo
-        SRIJ estão autorizadas a explorar jogos de azar em regime online. A
-        participação em jogos ilegais constitui crime (art.º 8.º da
-        Lei n.º 4/2015).
+        The operation of and participation in gambling in Portugal is regulated
+        by Law No. 4/2015 of 12 January and supervised by the Gambling
+        Regulation and Inspection Service (SRIJ —
+        www.srij.turismodeportugal.pt). Only entities licensed by the SRIJ are
+        authorised to operate online gambling in Portugal. Participation in
+        illegal gambling is a criminal offence (Article 8 of Law No. 4/2015).
       </TermParagraph>
 
-      <TermHeading>3. Recursos de Apoio em Portugal</TermHeading>
+      <TermHeading>3. Support Resources in Portugal</TermHeading>
       <TermParagraph>
-        Se considera que pode ter um problema com o jogo, os seguintes recursos
-        podem ajudar:
+        If you feel you may have a gambling problem, the following resources
+        can help:
       </TermParagraph>
       <TermList
         items={[
-          'SRIJ — Serviço de Regulação e Inspeção de Jogos: www.srij.turismodeportugal.pt',
-          'Linha de Apoio ao Jogador Compulsivo (Jogadores Anónimos Portugal): www.jogadoresanonimos.pt',
-          'SNS 24 — Linha de Apoio à Saúde Mental: 808 24 24 24',
-          'Voz de Apoio — Linha Telefone de Apoio: 213 545 480 (linha de apoio psicológico, integrada na SOS Voz de Apoio).',
+          'SRIJ — Gambling Regulation and Inspection Service: www.srij.turismodeportugal.pt',
+          'Gamblers Anonymous Portugal (Jogadores Anónimos): www.jogadoresanonimos.pt',
+          'SNS 24 — Mental Health Support Line (Portugal): 808 24 24 24',
+          'Voz de Apoio — Psychological Support Helpline: 213 545 480 (part of SOS Voz de Apoio).',
         ]}
       />
 
-      <TermHeading>4. Autolimitação e Autoexclusão</TermHeading>
+      <TermHeading>4. Self-Limitation and Self-Exclusion</TermHeading>
       <TermList
         items={[
-          'Defina um orçamento fixo para as suas sessões e não o ultrapasse.',
-          'Estabeleça limites de tempo para jogar.',
-          'Não jogue com dinheiro que não pode perder.',
-          'Reflita sobre os motivos que o levam a jogar.',
-          'Procure apoio se sentir dificuldade em parar.',
+          'Set a fixed budget for your sessions and never exceed it.',
+          'Establish time limits for playing.',
+          'Do not gamble with money you cannot afford to lose.',
+          'Reflect on the reasons that lead you to play.',
+          'Seek support if you find it difficult to stop.',
         ]}
       />
 
-      <TermHeading>5. Aviso Importante</TermHeading>
+      <TermHeading>5. Important Notice</TermHeading>
       <TermParagraph>
-        O jogo pode ser viciante. A perda de controlo sobre o jogo é uma
-        perturbação reconhecida pela Organização Mundial de Saúde (perturbação
-        do jogo, classificada na CID-11). Reconhecer o problema é o primeiro
-        passo para o resolver.
+        Gambling can be addictive. Loss of control over gambling is a
+        recognised disorder (gambling disorder, classified in the ICD-11 by
+        the World Health Organization). Acknowledging the problem is the first
+        step towards solving it.
       </TermParagraph>
     </div>
   );
@@ -403,40 +397,40 @@ function CookiesContent() {
   return (
     <div>
       <TermParagraph>
-        A presente política descreve os cookies e tecnologias similares
-        utilizados pelo Poker Bankroll Dashboard, em conformidade com o
-        Regulamento Geral de Proteção de Dados (RGPD), a Lei n.º 58/2019 e as
-        orientações da Comissão Nacional de Proteção de Dados (CNPD).
+        This policy describes the cookies and similar technologies used by
+        Poker Bankroll Dashboard, in accordance with the General Data
+        Protection Regulation (GDPR), Portuguese Law No. 58/2019, and the
+        guidelines of the Portuguese Data Protection Authority (CNPD).
       </TermParagraph>
 
-      <TermHeading>1. O que são Cookies</TermHeading>
+      <TermHeading>1. What Are Cookies</TermHeading>
       <TermParagraph>
-        Cookies são pequenos ficheiros de texto armazenados no dispositivo do
-        utilizador que permitem reconhecer o dispositivo e memorizar
-        preferências, sessões e comportamentos de navegação.
+        Cookies are small text files stored on the user\u2019s device that
+        allow the device to be recognised and to remember preferences,
+        sessions, and browsing behaviour.
       </TermParagraph>
 
-      <TermHeading>2. Cookies Utilizados</TermHeading>
+      <TermHeading>2. Cookies Used</TermHeading>
       <TermList
         items={[
-          'Cookies essenciais: necessários ao funcionamento básico da plataforma (autenticação e sessão). Não requerem consentimento prévio.',
-          'Cookies de preferência: memorizam as opções do utilizador (ex.: modo claro/escuro). Requerem consentimento.',
-          'Cookies analíticos: permitem a medição agregada e anónima da utilização, para fins de melhoria do serviço. Requerem consentimento.',
+          'Essential cookies: necessary for the basic functioning of the platform (authentication and session). No prior consent required.',
+          'Preference cookies: remember user choices (e.g. light/dark mode). Require consent.',
+          'Analytical cookies: enable aggregated and anonymous measurement of usage, for service improvement purposes. Require consent.',
         ]}
       />
 
-      <TermHeading>3. Gestão de Cookies</TermHeading>
+      <TermHeading>3. Managing Cookies</TermHeading>
       <TermParagraph>
-        O utilizador pode, a qualquer momento, gerir ou eliminar os cookies
-        através das configurações do seu navegador. A desativação de cookies
-        essenciais pode, contudo, comprometer o funcionamento da plataforma.
+        You may at any time manage or delete cookies through your browser
+        settings. Disabling essential cookies may, however, affect the
+        functioning of the platform.
       </TermParagraph>
 
-      <TermHeading>4. Retirada do Consentimento</TermHeading>
+      <TermHeading>4. Withdrawing Consent</TermHeading>
       <TermParagraph>
-        O consentimento para cookies não essenciais pode ser retirado a
-        qualquer momento, com efeitos imediatos, através das preferências do
-        navegador ou do mecanismo de gestão disponibilizado na plataforma.
+        Consent for non-essential cookies may be withdrawn at any time, with
+        immediate effect, through your browser preferences or the management
+        mechanism provided on the platform.
       </TermParagraph>
     </div>
   );
@@ -445,46 +439,46 @@ function CookiesContent() {
 function ContactContent() {
   return (
     <div>
-      <TermHeading>Entidade Gestora</TermHeading>
+      <TermHeading>Operating Entity</TermHeading>
       <TermParagraph>
-        Poker Bankroll Dashboard é um serviço de registo e análise estatística
-        de sessões de poker, de caráter pessoal e informativo, gerido por uma
-        entidade de direito privado, não sujeita a licenciamento pelo Serviço
-        de Regulação e Inspeção de Jogos (SRIJ), por não organizar nem
-        facilitar jogos de azar.
+        Poker Bankroll Dashboard is a personal and informational poker session
+        recording and statistical analysis service, operated by a private-law
+        entity not subject to licensing by the Gambling Regulation and
+        Inspection Service (SRIJ), as it does not organise or facilitate
+        gambling.
       </TermParagraph>
 
-      <TermHeading>Morada para Comunicações</TermHeading>
+      <TermHeading>Address for Communications</TermHeading>
       <TermList
         items={[
           'Poker Bankroll Dashboard',
-          'Lisboa, Portugal',
+          'Lisbon, Portugal',
           'Email: contact@pokerbankroll.pt',
         ]}
       />
 
-      <TermHeading>NIF e Registo</TermHeading>
+      <TermHeading>VAT Number and Registration</TermHeading>
       <TermParagraph>
-        O NIF e demais elementos de identificação fiscal da entidade gestora
-        podem ser solicitados por escrito através do endereço de email
-        indicado acima.
+        The VAT number (NIF) and other tax identification details of the
+        operating entity may be requested in writing at the email address
+        indicated above.
       </TermParagraph>
 
-      <TermHeading>Reclamações</TermHeading>
+      <TermHeading>Complaints</TermHeading>
       <TermParagraph>
-        As reclamações deverão ser apresentadas por escrito para o endereço de
-        email acima. Na ausência de resposta satisfatória, o utilizador poderá
-        recorrer aos mecanismos de resolução alternativa de litígios de consumo
-        previstos na Lei n.º 144/2015, de 8 de setembro, designadamente ao
-        Centro de Arbitragem de Conflitos de Consumo (CNIACC — www.cniacc.pt).
+        Complaints should be submitted in writing to the email address above.
+        In the absence of a satisfactory response, you may resort to the
+        alternative consumer dispute resolution mechanisms provided for under
+        Portuguese Law No. 144/2015 of 8 September, in particular the Consumer
+        Dispute Arbitration Centre (CNIACC — www.cniacc.pt).
       </TermParagraph>
 
-      <TermHeading>Autoridades de Supervisão</TermHeading>
+      <TermHeading>Supervisory Authorities</TermHeading>
       <TermList
         items={[
-          'CNPD — Comissão Nacional de Proteção de Dados: www.cnpd.pt (proteção de dados pessoais).',
-          'SRIJ — Serviço de Regulação e Inspeção de Jogos: www.srij.turismodeportugal.pt (jogos e apostas em Portugal).',
-          'IGAC — Inspeção-Geral das Atividades Culturais: www.igac.gov.pt (direitos de autor).',
+          'CNPD — Portuguese Data Protection Authority: www.cnpd.pt (personal data protection).',
+          'SRIJ — Gambling Regulation and Inspection Service: www.srij.turismodeportugal.pt (gambling and betting in Portugal).',
+          'IGAC — General Inspectorate for Cultural Activities: www.igac.gov.pt (copyright).',
         ]}
       />
     </div>
@@ -547,14 +541,14 @@ export function LegalModal({ section, onClose }: LegalModalProps) {
                 {meta.title}
               </h2>
               <p className="text-xs text-gray-500 dark:text-gray-400">
-                {meta.subtitle} · Atualizado a {meta.lastUpdated}
+                {meta.subtitle} · Last updated {meta.lastUpdated}
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
             className="p-2 rounded-lg text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-            aria-label="Fechar"
+            aria-label="Close"
           >
             <X className="w-5 h-5" />
           </button>
@@ -569,7 +563,7 @@ export function LegalModal({ section, onClose }: LegalModalProps) {
             onClick={onClose}
             className="w-full py-2.5 px-4 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 text-sm font-medium transition-colors"
           >
-            Fechar
+            Close
           </button>
         </div>
       </div>

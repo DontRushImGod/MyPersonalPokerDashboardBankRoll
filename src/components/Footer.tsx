@@ -12,12 +12,12 @@ interface FooterLink {
 }
 
 const LINKS: FooterLink[] = [
-  { section: 'terms', icon: Scale, label: 'Termos e Condições' },
-  { section: 'privacy', icon: Shield, label: 'Privacidade' },
-  { section: 'copyright', icon: Copy, label: 'Direitos de Autor' },
-  { section: 'responsible', icon: AlertTriangle, label: 'Jogo Responsável' },
+  { section: 'terms', icon: Scale, label: 'Terms & Conditions' },
+  { section: 'privacy', icon: Shield, label: 'Privacy Policy' },
+  { section: 'copyright', icon: Copy, label: 'Copyright' },
+  { section: 'responsible', icon: AlertTriangle, label: 'Responsible Gaming' },
   { section: 'cookies', icon: Cookie, label: 'Cookies' },
-  { section: 'contact', icon: Mail, label: 'Contactos' },
+  { section: 'contact', icon: Mail, label: 'Legal Notices' },
 ];
 
 export function Footer({ onOpenSection }: FooterProps) {
@@ -35,12 +35,11 @@ export function Footer({ onOpenSection }: FooterProps) {
               </span>
             </div>
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-              Ferramenta de registo e análise estatística de sessões de poker
-              para acompanhamento pessoal. Não facilita nem promove jogos de
-              azar.
+              A personal poker session recording and statistical analysis tool.
+              It does not facilitate or promote gambling.
             </p>
             <p className="text-xs text-gray-400 dark:text-gray-500 mt-3">
-              Operado a partir de Portugal · Sujeito à legislação portuguesa
+              Operated from Portugal · Subject to Portuguese law
             </p>
           </div>
 
@@ -63,11 +62,11 @@ export function Footer({ onOpenSection }: FooterProps) {
 
         <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-800 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <p className="text-xs text-gray-500 dark:text-gray-500">
-            © {new Date().getFullYear()} Poker Bankroll Dashboard. Todos os
-            direitos reservados.
+            © {new Date().getFullYear()} Poker Bankroll Dashboard. All rights
+            reserved.
           </p>
           <p className="text-xs text-gray-500 dark:text-gray-500">
-            +18 · Jogue com responsabilidade · Ajuda: Jogadores Anónimos Portugal
+            18+ · Play responsibly · Support: Gamblers Anonymous Portugal
           </p>
         </div>
       </div>
