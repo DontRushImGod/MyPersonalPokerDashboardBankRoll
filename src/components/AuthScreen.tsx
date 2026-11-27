@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { Moon, Sun, Loader2, TrendingUp } from 'lucide-react';
+import { Footer } from './Footer';
+import { LegalModal, type LegalSection } from './LegalModal';
 
 interface AuthScreenProps {
   isDark: boolean;
@@ -13,6 +15,7 @@ export function AuthScreen({ isDark, toggleDarkMode }: AuthScreenProps) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [legalSection, setLegalSection] = useState<LegalSection | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,7 +38,7 @@ export function AuthScreen({ isDark, toggleDarkMode }: AuthScreenProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center p-4 transition-colors duration-200">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col items-center justify-center p-4 transition-colors duration-200">
       <button
         onClick={toggleDarkMode}
         className="fixed top-6 right-6 p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110 z-40 border border-gray-200 dark:border-gray-700"
@@ -48,6 +51,7 @@ export function AuthScreen({ isDark, toggleDarkMode }: AuthScreenProps) {
         )}
       </button>
 
+      <div className="flex-1 w-full flex items-center justify-center py-12">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-2xl mb-4 shadow-lg">
@@ -148,6 +152,10 @@ export function AuthScreen({ isDark, toggleDarkMode }: AuthScreenProps) {
           </p>
         </div>
       </div>
+      </div>
+
+      <Footer onOpenSection={setLegalSection} />
+      <LegalModal section={legalSection} onClose={() => setLegalSection(null)} />
     </div>
   );
 }

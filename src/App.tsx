@@ -13,12 +13,15 @@ import { SessionHistory } from './components/SessionHistory';
 import { supabase } from './lib/supabase';
 import { Moon, Sun, LogOut, User } from 'lucide-react';
 import { LoadingScreen } from './components/LoadingScreen';
+import { Footer } from './components/Footer';
+import { LegalModal, type LegalSection } from './components/LegalModal';
 
 function App() {
   const { user, loading: authLoading } = useAuth();
   const { sessions, loading: sessionsLoading, addSession, deleteSession } = usePokerSessions(user);
   const { isDark, toggleDarkMode } = useDarkMode();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [legalSection, setLegalSection] = useState<LegalSection | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -117,6 +120,9 @@ function App() {
       </div>
 
       <SessionForm onSubmit={addSession} />
+
+      <Footer onOpenSection={setLegalSection} />
+      <LegalModal section={legalSection} onClose={() => setLegalSection(null)} />
     </div>
   );
 }
