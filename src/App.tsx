@@ -15,6 +15,9 @@ import { Moon, Sun, LogOut, User } from 'lucide-react';
 import { LoadingScreen } from './components/LoadingScreen';
 import { Footer } from './components/Footer';
 import { LegalModal, type LegalSection } from './components/LegalModal';
+import { useBankrollGoals } from './hooks/useBankrollGoals';
+import { GoalsPanel } from './components/GoalsPanel';
+import { GoalsSettingsModal } from './components/GoalsSettingsModal';
 
 function App() {
   const { user, loading: authLoading } = useAuth();
@@ -22,6 +25,8 @@ function App() {
   const { isDark, toggleDarkMode } = useDarkMode();
   const [menuOpen, setMenuOpen] = useState(false);
   const [legalSection, setLegalSection] = useState<LegalSection | null>(null);
+  const [goalsOpen, setGoalsOpen] = useState(false);
+  const { goals, loading: goalsLoading, saving, saveGoals } = useBankrollGoals(user);
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -104,9 +109,23 @@ function App() {
         </header>
 
         <div className="space-y-6">
-          <Statistics sessions={sessions} bankrollGoal={10000} />
+          {!goalsLoading && (
+            <GoalsPanel
+              sessions={sessions}
+              goals={goals}
+              onEdit={() => setGoalsOpen(true)}
+            />
+          )}
 
-          <BankrollChart sessions={sessions} bankrollGoal={10000} />
+          <Statistics
+            sessions={sessions}
+            bankrollGoal={goals ? parseFloat(goals.target_bankroll.toString()) : 10000}
+          />
+
+          <BankrollChart
+            sessions={sessions}
+            bankrollGoal={goals ? parseFloat(goals.target_bankroll.toString()) : 10000}
+          />
 
           <TournamentRadarChart sessions={sessions} />
 
@@ -123,6 +142,14 @@ function App() {
 
       <Footer onOpenSection={setLegalSection} />
       <LegalModal section={legalSection} onClose={() => setLegalSection(null)} />
+      {goalsOpen && (
+        <GoalsSettingsModal
+          goals={goals}
+          saving={saving}
+          onSave={saveGoals}
+          onClose={() => setGoalsOpen(false)}
+        />
+      )}
     </div>
   );
 }
