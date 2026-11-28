@@ -18,6 +18,10 @@ import { LegalModal, type LegalSection } from './components/LegalModal';
 import { useBankrollGoals } from './hooks/useBankrollGoals';
 import { GoalsPanel } from './components/GoalsPanel';
 import { GoalsSettingsModal } from './components/GoalsSettingsModal';
+import { ProgressionPanel } from './components/ProgressionPanel';
+import { BadgesPanel } from './components/BadgesPanel';
+import { ChallengesPanel } from './components/ChallengesPanel';
+import { CoachInsights } from './components/CoachInsights';
 
 function App() {
   const { user, loading: authLoading } = useAuth();
@@ -109,6 +113,8 @@ function App() {
         </header>
 
         <div className="space-y-6">
+          <ProgressionPanel sessions={sessions} />
+
           {!goalsLoading && (
             <GoalsPanel
               sessions={sessions}
@@ -132,6 +138,13 @@ function App() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <TournamentStats sessions={sessions} />
             <SiteDistribution sessions={sessions} />
+          </div>
+
+          <CoachInsights sessions={sessions} />
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <BadgesPanel sessions={sessions} />
+            <ChallengesPanel sessions={sessions} />
           </div>
 
           <SessionHistory sessions={sessions} onDelete={deleteSession} />
