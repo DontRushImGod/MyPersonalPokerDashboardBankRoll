@@ -2,29 +2,32 @@
 
 ## Product intent & audience
 
-- Project is a **poker tracker app** (inferred from assistant context).
-- User appears to be relatively new to React/web development fundamentals (asks clarifying questions about bundled file comments/license headers).
-- Goal per `.bolt/prompt`: production-worthy, fully featured app with auth, user profiles, and a clear build roadmap.
+- Poker tracker app for logging sessions, results, and stats.
+- User is newer to React/web fundamentals; wants educational, plain-language guidance.
+- Goal: production-worthy, fully featured app with auth, user profiles, and a build roadmap.
+- User wants a big, differentiating feature set that makes the app stand out from other poker trackers.
 
 ## Brand personality & voice
 
-- Tone is educational and approachable; explanations should be plain-language and beginner-friendly while still architecturally sound.
+- Educational, approachable, beginner-friendly but architecturally sound.
 
 ## Visual design & UX direction
 
 - Stack: Vite + React (JSX), Tailwind CSS, Lucide React icons.
-- Aesthetic goal (per `.bolt/prompt`): beautiful, non-cookie-cutter, production-grade.
-- No extra UI/theme/icon packages unless explicitly requested or unavoidable.
+- Aesthetic: beautiful, non-cookie-cutter, production-grade.
+- No extra UI/theme/icon packages unless explicitly requested.
 
 ## Decisions, constraints & rationale
 
 - Framework fixed as **vite-react**.
-- `.bolt/prompt` defines authoritative global instructions (design quality, stack limits, senior-architect persona, blueprint expectations) — not restated here.
-- React is bundled under MIT; no action needed by the user.
+- `.bolt/prompt` holds authoritative global instructions (design quality, stack limits, senior-architect persona, blueprint expectations) — not restated here.
+- Proposed differentiators: (1) gamified progression — ELO-style Poker Rank, XP/levels, unlockable badges, daily/weekly challenges; (2) AI Coach insights — rule-based pattern detection with plain-English recommendations (must be honest, not fake "AI"); (3) session story/timeline — visual narrative feed of milestones/streaks.
+- Recommendation: gamified progression as primary differentiator; builds on existing session data and drives retention.
 
 ## Open questions & assumptions
 
-- **Assumption:** "poker tracker" means tracking poker session results/stats (hands, winnings, sessions) — exact feature scope not yet confirmed.
-- **Open:** Backend/auth choice (e.g., Supabase vs Firebase) not yet decided.
-- **Open:** Database schema for user profiles not yet defined.
-- **Open:** Whether this is a single-user local app or multi-user with accounts/sessions.
+- **Assumption:** tracker = session-level results/stats (hands, winnings, sessions) — exact scope unconfirmed.
+- **Open:** Which differentiator(s) to pursue — user hasn't confirmed yet.
+- **Open:** Backend/auth choice (Supabase vs Firebase) undecided.
+- **Open:** Database schema for user profiles undefined.
+- **Open:** Single-user local app vs multi-user with accounts/sessions.
